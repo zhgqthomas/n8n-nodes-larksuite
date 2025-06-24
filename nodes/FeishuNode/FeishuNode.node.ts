@@ -12,15 +12,15 @@ const resourceBuilder = ResourceFactory.build(__dirname);
 
 export class FeishuNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Feishu Node',
-		name: 'feishuNode',
+		displayName: 'Lark',
+		name: 'lark',
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
 		icon: 'file:icon.png',
 		group: ['transform'],
 		version: 1,
-		description: 'Feishu Node',
+		description: 'Lark',
 		defaults: {
-			name: 'Feishu Node',
+			name: 'Lark',
 		},
 		usableAsTool: true,
 		// @ts-ignore
@@ -52,7 +52,7 @@ export class FeishuNode implements INodeType {
 		const callFunc = resourceBuilder.getCall(resource, operation);
 
 		if (!callFunc) {
-			throw new NodeOperationError(this.getNode(), '未实现方法: ' + resource + '.' + operation);
+			throw new NodeOperationError(this.getNode(), 'No resources and operatons find: ' + resource + '.' + operation);
 		}
 
 		// Iterates over all input items and add the key "myString" with the

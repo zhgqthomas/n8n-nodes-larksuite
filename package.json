@@ -4,18 +4,20 @@
   "description": "feishu node",
   "keywords": [
     "n8n-community-node-package",
+    "lark",
+    "larksuite",
     "feishu",
     "飞书"
   ],
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "blowsnow",
-    "email": "im.blowsnow@gmail.com"
+    "name": "zhgqthomas",
+    "email": "zhgqthomas@outlook.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/other-blowsnow/n8n-nodes-feishu-lite"
+    "url": "https://github.com/zhgqthomas/n8n-nodes-larksuite.git"
   },
   "engines": {
     "node": ">=18.10",

@@ -65,6 +65,7 @@
     "n8n-workflow": "latest"
   },
   "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.50.1",
     "xml-js": "^1.6.11"
   }
 }

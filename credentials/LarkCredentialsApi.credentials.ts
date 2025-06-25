@@ -7,8 +7,8 @@ import {
 } from 'n8n-workflow';
 import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 
-export class FeishuCredentialsApi implements ICredentialType {
-	name = 'feishuCredentialsApi';
+export class LarkCredentialsApi implements ICredentialType {
+	name = 'larkCredentialsApi';
 	displayName = 'Lark Credentials API';
 	// @ts-ignore
 	icon = 'file:icon.png';

@@ -1,4 +1,4 @@
-import { INodeType, INodeTypeDescription } from 'n8n-workflow';
+import { INodeType, INodeTypeDescription, NodeConnectionType } from 'n8n-workflow';
 
 export class LarkTrigger implements INodeType {
 	description: INodeTypeDescription = {
@@ -11,9 +11,11 @@ export class LarkTrigger implements INodeType {
 		defaults: {
 			name: 'Lark Trigger',
 		},
+		inputs: [],
+		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'larkApi',
+				name: 'larkCredentialsApi',
 				required: true,
 			},
 		],

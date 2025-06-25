@@ -29,7 +29,7 @@ export class FeishuNode implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'feishuCredentialsApi',
+				name: 'larkCredentialsApi',
 				required: true,
 			},
 		],

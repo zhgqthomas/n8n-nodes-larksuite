@@ -1,23 +1,26 @@
 {
-  "name": "n8n-nodes-feishu-lite",
-  "version": "0.3.7",
-  "description": "feishu node",
+  "name": "n8n-nodes-larksuite",
+  "version": "1.0.0",
+  "description": "lark node",
   "keywords": [
     "n8n-community-node-package",
+    "n8n",
+    "n8n-node",
     "lark",
     "larksuite",
+    "lark-bot",
     "feishu",
     "飞书"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/zhgqthomas/n8n-nodes-larksuite#readme",
   "author": {
     "name": "zhgqthomas",
     "email": "zhgqthomas@outlook.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zhgqthomas/n8n-nodes-larksuite.git"
+    "url": "git+https://github.com/zhgqthomas/n8n-nodes-larksuite.git"
   },
   "engines": {
     "node": ">=18.10",

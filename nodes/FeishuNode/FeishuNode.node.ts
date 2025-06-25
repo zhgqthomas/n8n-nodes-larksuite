@@ -13,7 +13,7 @@ const resourceBuilder = ResourceFactory.build(__dirname);
 export class FeishuNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Lark',
-		name: 'lark',
+		name: 'Lark',
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
 		icon: 'file:icon.png',
 		group: ['transform'],

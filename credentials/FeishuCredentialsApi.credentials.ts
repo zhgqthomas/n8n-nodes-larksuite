@@ -9,7 +9,7 @@ import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 
 export class FeishuCredentialsApi implements ICredentialType {
 	name = 'feishuCredentialsApi';
-	displayName = 'Feishu Credentials API';
+	displayName = 'Lark Credentials API';
 	// @ts-ignore
 	icon = 'file:icon.png';
 	properties: INodeProperties[] = [
@@ -22,7 +22,7 @@ export class FeishuCredentialsApi implements ICredentialType {
 		},
 		{
 			displayName: 'Appid',
-			description: '开放平台应用的唯一标识。可以在开发者后台的 凭证与基础信息 页面查看 app_id',
+			description: 'The unique identifier for an application on the Lark Open Platform',
 			name: 'appid',
 			type: 'string',
 			default: '',
@@ -30,7 +30,7 @@ export class FeishuCredentialsApi implements ICredentialType {
 		{
 			displayName: 'AppSecret',
 			name: 'appsecret',
-			description: '应用的秘钥',
+			description: 'The secret key for the application.',
 			type: 'string',
 			typeOptions: {
 				password: true,
@@ -61,7 +61,7 @@ export class FeishuCredentialsApi implements ICredentialType {
 		// console.log('preAuthentication res:', res);
 
 		if (res.code && res.code !== 0) {
-			throw new Error('授权失败：' + res.code + ', ' + res.msg);
+			throw new Error('Authentication failed:' + res.code + ', ' + res.msg);
 		}
 
 		return { accessToken: res.tenant_access_token };
@@ -103,7 +103,7 @@ export class FeishuCredentialsApi implements ICredentialType {
 				type: 'responseCode',
 				properties: {
 					value: 200,
-					message: '授权验证失败',
+					message: 'Authentication successful',
 				},
 			},
 		],

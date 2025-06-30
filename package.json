@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-larksuite",
+  "name": "n8n-nodes-lark-feishu",
   "version": "1.0.0",
   "description": "lark node",
   "keywords": [
@@ -13,14 +13,14 @@
     "飞书"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/zhgqthomas/n8n-nodes-larksuite#readme",
+  "homepage": "https://github.com/zhgqthomas/n8n-nodes-lark-feishu#readme",
   "author": {
     "name": "zhgqthomas",
     "email": "zhgqthomas@outlook.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhgqthomas/n8n-nodes-larksuite.git"
+    "url": "git+https://github.com/zhgqthomas/n8n-nodes-lark-feishu.git"
   },
   "engines": {
     "node": ">=18.10",
@@ -29,7 +29,7 @@
   "packageManager": "pnpm@9.1.4",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && gulp build:icons",
+    "build": "rm -rf dist && tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
@@ -49,17 +49,17 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^22.13.1",
-    "@typescript-eslint/parser": "^7.15.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-n8n-nodes-base": "^1.16.1",
-    "express": "^4.21.2",
-    "form-data": "^4.0.1",
-    "glob": "^10.4.5",
-    "gulp": "^4.0.2",
-    "prettier": "^3.3.2",
+    "@types/node": "^24.0.7",
+    "@typescript-eslint/parser": "^8.35.0",
+    "eslint": "^9.30.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "express": "^5.1.0",
+    "form-data": "^4.0.3",
+    "glob": "^11.0.3",
+    "gulp": "^5.0.1",
+    "prettier": "^3.6.2",
     "require-glob": "^4.1.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "n8n-workflow": "latest"

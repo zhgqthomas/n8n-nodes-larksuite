@@ -21,14 +21,14 @@ export class LarkCredentialsApi implements ICredentialType {
 			required: true,
 		},
 		{
-			displayName: 'Appid',
+			displayName: 'App ID',
 			description: 'The unique identifier for an application on the Lark Open Platform',
 			name: 'appid',
 			type: 'string',
 			default: '',
 		},
 		{
-			displayName: 'AppSecret',
+			displayName: 'App Secret',
 			name: 'appsecret',
 			description: 'The secret key for the application.',
 			type: 'string',

@@ -65,9 +65,15 @@ export class LarkTrigger implements INodeType {
 		}
 		const appId = credentials['appid'] as string;
 		const appSecret = credentials['appsecret'] as string;
+		const baseUrl = credentials['baseUrl'] as string;
 
 		const client = new Lark.Client({ appId, appSecret });
-		let wsClient: Lark.WSClient | null = new Lark.WSClient({ appId, appSecret, loggerLevel: Lark.LoggerLevel.debug });
+		let wsClient: Lark.WSClient | null = new Lark.WSClient({
+			appId,
+			appSecret,
+			domain: baseUrl === 'open.feishu.cn' ? Lark.Domain.Feishu : Lark.Domain.Lark,
+			loggerLevel: Lark.LoggerLevel.debug,
+		});
 
 		// const eventMap: Record<string, (data: any) => Promise<void>> = {};
 		// for (const eventType of eventTypes) {
@@ -97,6 +103,19 @@ export class LarkTrigger implements INodeType {
 						msg_type: 'interactive',
 					},
 				});
+
+				// this.emit([
+				// 	this.helpers.returnJsonArray([
+				// 		{
+				// 			chat_id,
+				// 			content: Lark.messageCard.defaultCard({
+				// 				title: `回复： ${JSON.parse(content).text}`,
+				// 				content: '新年好',
+				// 			}),
+				// 			msg_type: 'interactive',
+				// 		},
+				// 	]),
+				// ]);
 			},
 		});
 

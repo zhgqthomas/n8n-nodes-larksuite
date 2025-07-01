@@ -30,29 +30,10 @@ export class LarkTrigger implements INodeType {
 		properties: [
 			{
 				displayName:
-					'Due to Lark API limitations, you can use just one Lark trigger for each bot at a time',
+					'Due to Lark API limitations, you can use just one Lark trigger for each lark bot at a time',
 				name: 'LarkTriggerNotice',
 				type: 'notice',
 				default: '',
-			},
-			{
-				displayName: 'Trigger On',
-				name: 'updates',
-				type: 'multiOptions',
-				options: [
-					{
-						name: '*',
-						value: '*',
-						description: 'All updates',
-					},
-					{
-						name: 'Callback Query',
-						value: 'callback_query',
-						description: 'Trigger on new incoming callback query',
-					},
-				],
-				required: true,
-				default: [],
 			},
 		],
 	};
@@ -73,15 +54,8 @@ export class LarkTrigger implements INodeType {
 			appSecret,
 			domain: baseUrl === 'open.feishu.cn' ? Lark.Domain.Feishu : Lark.Domain.Lark,
 			loggerLevel: Lark.LoggerLevel.debug,
+			autoReconnect: false, // Disable auto-reconnect for manual control
 		});
-
-		// const eventMap: Record<string, (data: any) => Promise<void>> = {};
-		// for (const eventType of eventTypes) {
-		// 	eventMap[eventType] = async (data: any) => {
-		// 		const item: INodeExecutionData = { json: data };
-		// 		this.emit([item as INodeExecutionData]);
-		// 	};
-		// }
 
 		const eventDispatcher = new Lark.EventDispatcher({}).register({
 			'im.message.receive_v1': async (data) => {
@@ -103,19 +77,6 @@ export class LarkTrigger implements INodeType {
 						msg_type: 'interactive',
 					},
 				});
-
-				// this.emit([
-				// 	this.helpers.returnJsonArray([
-				// 		{
-				// 			chat_id,
-				// 			content: Lark.messageCard.defaultCard({
-				// 				title: `回复： ${JSON.parse(content).text}`,
-				// 				content: '新年好',
-				// 			}),
-				// 			msg_type: 'interactive',
-				// 		},
-				// 	]),
-				// ]);
 			},
 		});
 

@@ -1,0 +1,19 @@
+{
+	"node": "n8n-nodes-lark-feishu.larkTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Communication"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://open.feishu.cn/document/faq/trouble-shooting/how-to-obtain-app-id"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://open.feishu.cn/document/client-docs/intro"
+			}
+		],
+		"generic": []
+	}
+}

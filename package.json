@@ -40,12 +40,12 @@
     "dist"
   ],
   "n8n": {
-    "n8nNodesApiVersion": 1,
     "credentials": [
       "dist/credentials/LarkCredentialsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/FeishuNode/FeishuNode.node.js"
+      "dist/nodes/FeishuNode/FeishuNode.node.js",
+      "dist/nodes/FeishuNode/LarkTrigger.node.js"
     ]
   },
   "devDependencies": {

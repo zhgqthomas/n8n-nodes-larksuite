@@ -1,17 +1,17 @@
 import {
+	IAuthenticateGeneric,
 	ICredentialDataDecryptedObject,
 	ICredentialTestRequest,
 	ICredentialType,
 	IHttpRequestHelper,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
-import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 
 export class LarkCredentialsApi implements ICredentialType {
 	name = 'larkCredentialsApi';
 	displayName = 'Lark API';
-	// @ts-ignore
-	icon = 'file:lark_icon.svg';
+	icon: Icon = 'file:lark_icon.svg';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Base URL',
@@ -77,20 +77,15 @@ export class LarkCredentialsApi implements ICredentialType {
 		return { accessToken: res.tenant_access_token };
 	}
 
-	async authenticate(
-		credentials: ICredentialDataDecryptedObject,
-		requestOptions: IHttpRequestOptions,
-	): Promise<IHttpRequestOptions> {
-		requestOptions.baseURL = `https://${credentials.baseUrl}`;
-		requestOptions.headers = {
-			...(requestOptions.headers || {}),
-			Authorization: 'Bearer ' + credentials.accessToken,
-		};
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
+			headers: {
+				Authorization: '=Bearer {{$credentials.accessToken}}',
+			},
+		},
+	};
 
-		return requestOptions;
-	}
-
-	// The block below tells how this credential can be tested
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '=https://{{$credentials.baseUrl}}',

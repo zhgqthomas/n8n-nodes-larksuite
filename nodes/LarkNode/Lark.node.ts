@@ -14,8 +14,7 @@ export class Lark implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Lark',
 		name: 'Lark',
-		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
-		icon: 'file:icon.png',
+		icon: 'file:lark_icon.svg',
 		group: ['transform'],
 		version: 1,
 		description: 'Lark',

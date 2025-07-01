@@ -9,15 +9,27 @@ import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 
 export class LarkCredentialsApi implements ICredentialType {
 	name = 'larkCredentialsApi';
-	displayName = 'Lark Credentials API';
+	displayName = 'Lark API';
 	// @ts-ignore
-	icon = 'file:icon.png';
+	icon = 'file:lark_icon.svg';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Base URL',
 			name: 'baseUrl',
-			type: 'string',
-			default: 'open.feishu.cn',
+			type: 'options',
+			options: [
+				{
+					name: 'open.feishu.cn',
+					value: 'open.feishu.cn',
+					description: 'Feishu Open Platform base URL(China)',
+				},
+				{
+					name: 'open.larksuite.com',
+					value: 'open.larksuite.com',
+					description: 'Lark Open Platform base URL(Global)',
+				},
+			],
+			default: ['open.feishu.cn'],
 			required: true,
 		},
 		{
@@ -58,8 +70,6 @@ export class LarkCredentialsApi implements ICredentialType {
 			},
 		})) as any;
 
-		// console.log('preAuthentication res:', res);
-
 		if (res.code && res.code !== 0) {
 			throw new Error('Authentication failed:' + res.code + ', ' + res.msg);
 		}
@@ -76,13 +86,6 @@ export class LarkCredentialsApi implements ICredentialType {
 			...(requestOptions.headers || {}),
 			Authorization: 'Bearer ' + credentials.accessToken,
 		};
-		// console.log('authenticate requestOptions:', requestOptions);
-		// requestOptions.proxy = {
-		// 	host: '127.0.0.1',
-		// 	port: 8000,
-		// 	protocol: 'http',
-		// };
-		// requestOptions.skipSslCertificateValidation = true;
 
 		return requestOptions;
 	}

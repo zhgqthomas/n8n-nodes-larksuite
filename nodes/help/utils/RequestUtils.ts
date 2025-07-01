@@ -7,10 +7,10 @@ class RequestUtils {
 		options: IRequestOptions,
 		clearAccessToken = false,
 	) {
-		const credentials = await this.getCredentials('feishuCredentialsApi');
+		const credentials = await this.getCredentials('larkCredentialsApi');
 
 		return this.helpers.requestWithAuthentication
-			.call(this, 'feishuCredentialsApi', options, {
+			.call(this, 'larkCredentialsApi', options, {
 				// @ts-ignore
 				credentialsDecrypted: {
 					data: {

@@ -14,7 +14,7 @@ export default {
 			url: `/open-apis/event/v1/outbound_ip`,
 		});
 
-		const credentials = await this.getCredentials('feishuCredentialsApi');
+		const credentials = await this.getCredentials('larkCredentialsApi');
 
 		return {
 			accessToken: credentials.accessToken,

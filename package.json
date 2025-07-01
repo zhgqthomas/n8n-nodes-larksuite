@@ -44,8 +44,8 @@
       "dist/credentials/LarkCredentialsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/FeishuNode/FeishuNode.node.js",
-      "dist/nodes/FeishuNode/LarkTrigger.node.js"
+      "dist/nodes/LarkNode/lark.node.js",
+      "dist/nodes/LarkNode/LarkTrigger.node.js"
     ]
   },
   "devDependencies": {

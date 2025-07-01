@@ -10,7 +10,7 @@ import ResourceFactory from '../help/builder/ResourceFactory';
 
 const resourceBuilder = ResourceFactory.build(__dirname);
 
-export class FeishuNode implements INodeType {
+export class Lark implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Lark',
 		name: 'Lark',
@@ -52,7 +52,10 @@ export class FeishuNode implements INodeType {
 		const callFunc = resourceBuilder.getCall(resource, operation);
 
 		if (!callFunc) {
-			throw new NodeOperationError(this.getNode(), 'No resources and operatons find: ' + resource + '.' + operation);
+			throw new NodeOperationError(
+				this.getNode(),
+				'No resources and operatons find: ' + resource + '.' + operation,
+			);
 		}
 
 		// Iterates over all input items and add the key "myString" with the
@@ -80,10 +83,10 @@ export class FeishuNode implements INodeType {
 				// to handle errors.
 				if (this.continueOnFail()) {
 					let errorJson = {
-						error: error.message
-					}
-					if (error.name === 'NodeApiError'){
-						errorJson.error = error?.cause?.error
+						error: error.message,
+					};
+					if (error.name === 'NodeApiError') {
+						errorJson.error = error?.cause?.error;
 					}
 
 					returnData.push({
@@ -91,9 +94,9 @@ export class FeishuNode implements INodeType {
 						pairedItem: itemIndex,
 					});
 					continue;
-				}else if (error.name === 'NodeApiError'){
-					throw error
-				}else {
+				} else if (error.name === 'NodeApiError') {
+					throw error;
+				} else {
 					throw new NodeOperationError(this.getNode(), error, {
 						message: error.message,
 						itemIndex,

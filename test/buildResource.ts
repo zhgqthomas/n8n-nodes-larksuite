@@ -1,7 +1,7 @@
 import ResourceFactory from '../nodes/help/builder/ResourceFactory';
 
 const resourceBuilder = ResourceFactory.build(
-	__dirname + '/../dist/nodes/FeishuNode',
+	__dirname + '/../dist/nodes/LarkNode',
 );
 
 let txt = '';

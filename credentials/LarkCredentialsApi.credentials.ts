@@ -4,6 +4,7 @@ import {
 	ICredentialType,
 	IHttpRequestHelper,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
 import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 
@@ -11,7 +12,7 @@ export class LarkCredentialsApi implements ICredentialType {
 	name = 'larkCredentialsApi';
 	displayName = 'Lark API';
 	// @ts-ignore
-	icon = 'file:lark_icon.svg';
+	icon: Icon = 'file:lark_icon.svg';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Base URL',

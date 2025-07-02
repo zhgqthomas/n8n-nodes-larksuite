@@ -7,7 +7,6 @@ import RequestHandle from './request-handle';
 
 const CAppTicketHandle = 'app_ticket';
 const CAppTicket = Symbol('app-ticket');
-const CEventType = Symbol('event-type');
 
 export class EventDispatcher {
 	requestHandle?: RequestHandle;
@@ -69,7 +68,9 @@ export class EventDispatcher {
 
 	async invoke(data: any) {
 		const targetData = this.requestHandle?.parse(data);
-		const type = targetData[CEventType];
+		this.logger.debug(`invoke event dispatcher with data: ${JSON.stringify(targetData)}`);
+
+		const type = targetData['event_type'];
 		if (this.handles.has(type)) {
 			const ret = await this.handles.get(type)!(targetData);
 			this.logger.debug(`execute ${type} handle`);

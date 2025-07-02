@@ -1,7 +1,5 @@
 import { Logger } from 'n8n-workflow';
 
-const CEventType = Symbol('event-type');
-
 export default class RequestHandle {
 	logger: Logger;
 
@@ -10,16 +8,12 @@ export default class RequestHandle {
 	}
 
 	parse(data: any) {
-		const targetData = (() => {
-			const { ...rest } = data || {};
-			return rest;
-		})();
+		const targetData = data;
 
 		// v1和v2版事件的区别：https://open.feishu.cn/document/ukTMukTMukTM/uUTNz4SN1MjL1UzM
 		if ('schema' in targetData) {
 			const { header, event, ...rest } = targetData;
 			return {
-				[CEventType]: targetData?.header?.event_type,
 				...rest,
 				...header,
 				...event,
@@ -27,7 +21,6 @@ export default class RequestHandle {
 		}
 		const { event, ...rest } = targetData;
 		return {
-			[CEventType]: targetData?.event?.type,
 			...event,
 			...rest,
 		};

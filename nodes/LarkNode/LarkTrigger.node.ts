@@ -6,7 +6,9 @@ import {
 	NodeConnectionType,
 	NodeOperationError,
 } from 'n8n-workflow';
-import * as Lark from '@larksuiteoapi/node-sdk';
+import { WSClient } from '../wsclient';
+import { Domain } from '../wsclient/enum';
+import { EventDispatcher } from '../wsclient/dispatcher';
 
 export class LarkTrigger implements INodeType {
 	description: INodeTypeDescription = {
@@ -48,41 +50,23 @@ export class LarkTrigger implements INodeType {
 		const appSecret = credentials['appsecret'] as string;
 		const baseUrl = credentials['baseUrl'] as string;
 
-		const client = new Lark.Client({ appId, appSecret });
-		let wsClient: Lark.WSClient | null = new Lark.WSClient({
+		let wsClient: WSClient = new WSClient({
 			appId,
 			appSecret,
-			domain: baseUrl === 'open.feishu.cn' ? Lark.Domain.Feishu : Lark.Domain.Lark,
-			loggerLevel: Lark.LoggerLevel.debug,
-			autoReconnect: true,
+			domain: baseUrl === 'open.feishu.cn' ? Domain.Feishu : Domain.Lark,
+			logger: this.logger,
+			helpers: this.helpers,
 		});
 
-		const eventDispatcher = new Lark.EventDispatcher({}).register({
+		const eventDispatcher = new EventDispatcher({ logger: this.logger }).register({
 			'im.message.receive_v1': async (data) => {
-				// console.log(`Received im.message.receive_v1 event: ${JSON.stringify(data)}`);
-				const {
-					message: { chat_id, content },
-				} = data;
-				// 示例操作：接收消息后，调用「发送消息」API 进行消息回复。
-				await client.im.v1.message.create({
-					params: {
-						receive_id_type: 'chat_id',
-					},
-					data: {
-						receive_id: chat_id,
-						content: Lark.messageCard.defaultCard({
-							title: `回复： ${JSON.parse(content).text}`,
-							content: '新年好',
-						}),
-						msg_type: 'interactive',
-					},
-				});
+				console.log(`Received im.message.receive_v1 event: ${JSON.stringify(data)}`);
 			},
 		});
 
 		const manualTriggerFunction = async () => {
 			try {
-				wsClient?.start({ eventDispatcher });
+				await wsClient.start({ eventDispatcher });
 				this.logger.info('Started Lark app in test mode');
 			} catch (error) {
 				this.logger.error('Error starting Lark app in test mode: ' + error);
@@ -96,7 +80,7 @@ export class LarkTrigger implements INodeType {
 
 		if (this.getMode() === 'trigger') {
 			try {
-				wsClient?.start({ eventDispatcher });
+				await wsClient.start({ eventDispatcher });
 				this.logger.info('Started Lark app in trigger mode');
 			} catch (error) {
 				this.logger.error('Error starting Lark app in trigger mode: ' + error);
@@ -106,12 +90,13 @@ export class LarkTrigger implements INodeType {
 
 		const closeFunction = async () => {
 			try {
-				wsClient = null; // Close the WebSocket connection
+				await wsClient.stop(); // Close the WebSocket connection
 				this.logger.info('Lark app has been stopped');
 			} catch (error) {
 				this.logger.error('Error stopping Lark app: ' + error);
 			}
 		};
+
 		return {
 			closeFunction,
 			manualTriggerFunction,

@@ -303,7 +303,6 @@ export class WSClient {
 
 		wsInstance?.on('close', () => {
 			this.logger.debug('[ws] client closed');
-			this.reConnect();
 		});
 	}
 
@@ -408,7 +407,7 @@ export class WSClient {
 		const { eventDispatcher } = params;
 
 		if (!eventDispatcher) {
-			this.logger.warn('[ws] client need to start with a eventDispatcher');
+			this.logger.error('[ws] client need to start with a eventDispatcher');
 			return;
 		}
 		this.eventDispatcher = eventDispatcher;
@@ -417,17 +416,17 @@ export class WSClient {
 
 	async stop() {
 		const wsInstance = this.wsConfig.getWSInstance();
+
 		if (wsInstance) {
 			wsInstance.terminate();
-			this.logger.info('[ws] client closed');
-		}
-
-		if (this.pingInterval) {
-			clearTimeout(this.pingInterval);
 		}
 
 		if (this.reconnectInterval) {
 			clearTimeout(this.reconnectInterval);
+		}
+
+		if (this.pingInterval) {
+			clearTimeout(this.pingInterval);
 		}
 
 		this.dataCache.clear();

@@ -1,6 +1,5 @@
 import { Logger, RequestHelperFunctions } from 'n8n-workflow';
 
-import qs from 'querystring';
 import WebSocket from 'ws';
 import { EventDispatcher } from './dispatcher';
 import * as protoBuf from './proto-buf';
@@ -100,7 +99,7 @@ export class WSClient {
 
 			const {
 				code,
-				data: { URL, ClientConfig },
+				data: { URL: connectUrl, ClientConfig },
 				msg,
 			} = JSON.parse(response);
 
@@ -113,10 +112,12 @@ export class WSClient {
 				}
 			}
 
-			const { device_id, service_id } = qs.parse(URL);
+			const parsedUrl = new URL(connectUrl);
+			const device_id = parsedUrl.searchParams.get('device_id');
+			const service_id = parsedUrl.searchParams.get('service_id');
 
 			this.wsConfig.updateWs({
-				connectUrl: URL,
+				connectUrl,
 
 				deviceId: device_id as string,
 				serviceId: service_id as string,
@@ -127,7 +128,7 @@ export class WSClient {
 				reconnectNonce: ClientConfig.ReconnectNonce * 1000,
 			});
 
-			this.logger.debug(`[ws] get connect config success, ws url: ${URL}`);
+			this.logger.debug(`[ws] get connect config success, ws url: ${connectUrl}`);
 
 			return true;
 		} catch (e) {

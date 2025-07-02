@@ -11,7 +11,6 @@ import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 export class LarkCredentialsApi implements ICredentialType {
 	name = 'larkCredentialsApi';
 	displayName = 'Lark API';
-	// @ts-ignore
 	icon: Icon = 'file:lark_icon.svg';
 	properties: INodeProperties[] = [
 		{
@@ -30,7 +29,7 @@ export class LarkCredentialsApi implements ICredentialType {
 					description: 'Lark Open Platform base URL(Global)',
 				},
 			],
-			default: ['open.feishu.cn'],
+			default: [],
 			required: true,
 		},
 		{

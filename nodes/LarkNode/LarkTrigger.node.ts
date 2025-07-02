@@ -54,7 +54,7 @@ export class LarkTrigger implements INodeType {
 			appSecret,
 			domain: baseUrl === 'open.feishu.cn' ? Lark.Domain.Feishu : Lark.Domain.Lark,
 			loggerLevel: Lark.LoggerLevel.debug,
-			autoReconnect: false, // Disable auto-reconnect for manual control
+			autoReconnect: true,
 		});
 
 		const eventDispatcher = new Lark.EventDispatcher({}).register({

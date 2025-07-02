@@ -1,11 +1,3 @@
-export interface Logger {
-	error: (...msg: any[]) => void | Promise<void>;
-	warn: (...msg: any[]) => void | Promise<void>;
-	info: (...msg: any[]) => void | Promise<void>;
-	debug: (...msg: any[]) => void | Promise<void>;
-	trace: (...msg: any[]) => void | Promise<void>;
-}
-
 export interface Cache {
 	set: (
 		key: string | Symbol,

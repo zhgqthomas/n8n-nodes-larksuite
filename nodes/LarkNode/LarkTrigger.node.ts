@@ -38,6 +38,64 @@ export class LarkTrigger implements INodeType {
 				type: 'notice',
 				default: '',
 			},
+			{
+				displayName: 'Event Filter',
+				name: 'eventFilter',
+				type: 'options',
+				options: [
+					{
+						name: 'All Events',
+						value: 'all_events',
+					},
+					{
+						name: 'Specific Events',
+						value: 'specific_events',
+					},
+				],
+				default: 'all_events',
+				description:
+					'Check the documentation for available events(https://open.larksuite.com/document/server-docs/event-subscription/event-list)',
+			},
+			{
+				displayName: 'Specific Events',
+				name: 'events',
+				type: 'multiOptions',
+				options: [
+					{
+						name: 'Plan Created',
+						value: 'planCreated',
+					},
+					{
+						name: 'Plan Deleted',
+						value: 'planDeleted',
+					},
+				],
+				default: [],
+				description: 'The events to be monitored',
+				displayOptions: {
+					show: {
+						eventFilter: ['specific_events'],
+					},
+				},
+			},
+			{
+				displayName: 'Callback Filter',
+				name: 'callbackFilter',
+				type: 'options',
+				options: [
+					{
+						name: 'All Callbacks',
+						value: 'all_callbacks',
+					},
+					{
+						name: 'Specific Callbacks',
+						value: 'specific_callbacks',
+					},
+				],
+				default: 'all_callbacks',
+				description:
+					'Check the documentation for available callbacks(https://open.feishu.cn/document/event-subscription-guide/callback-subscription/callback-overview#c8a9d6ae)',
+			},
 		],
 	};
 
@@ -67,8 +125,6 @@ export class LarkTrigger implements INodeType {
 		const startWsClient = async () => {
 			const eventDispatcher = new EventDispatcher({ logger: this.logger }).register({
 				'im.message.receive_v1': async (data) => {
-					console.log(`Received im.message.receive_v1 event: ${JSON.stringify(data)}`);
-
 					let responsePromise = undefined;
 					if ((nodeVersion as number) > 1) {
 						responsePromise = this.helpers.createDeferredPromise<IRun>();

@@ -5,6 +5,7 @@ import {
 	ITriggerResponse,
 	NodeConnectionType,
 	NodeOperationError,
+	IRun,
 } from 'n8n-workflow';
 import { WSClient } from '../wsclient';
 import { Domain } from '../wsclient/enum';
@@ -40,17 +41,18 @@ export class LarkTrigger implements INodeType {
 		],
 	};
 
-	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse | undefined> {
+	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
 		const credentials = await this.getCredentials('larkCredentialsApi');
 
-		if (!credentials.appid || !credentials.appsecret) {
+		if (!(credentials.appid && credentials.appsecret)) {
 			throw new NodeOperationError(this.getNode(), 'Missing required Lark credentials');
 		}
 		const appId = credentials['appid'] as string;
 		const appSecret = credentials['appsecret'] as string;
 		const baseUrl = credentials['baseUrl'] as string;
+		const nodeVersion = this.getNode().typeVersion;
 
-		let wsClient: WSClient = new WSClient({
+		const wsClient: WSClient = new WSClient({
 			appId,
 			appSecret,
 			domain: baseUrl === 'open.feishu.cn' ? Domain.Feishu : Domain.Lark,
@@ -58,48 +60,46 @@ export class LarkTrigger implements INodeType {
 			helpers: this.helpers,
 		});
 
-		const eventDispatcher = new EventDispatcher({ logger: this.logger }).register({
-			'im.message.receive_v1': async (data) => {
-				console.log(`Received im.message.receive_v1 event: ${JSON.stringify(data)}`);
-			},
-		});
-
-		const manualTriggerFunction = async () => {
-			try {
-				await wsClient.start({ eventDispatcher });
-				this.logger.info('Started Lark app in test mode');
-			} catch (error) {
-				this.logger.error('Error starting Lark app in test mode: ' + error);
-				throw error;
-			}
-
-			return new Promise<void>((resolve) => {
-				resolve();
-			});
-		};
-
-		if (this.getMode() === 'trigger') {
-			try {
-				await wsClient.start({ eventDispatcher });
-				this.logger.info('Started Lark app in trigger mode');
-			} catch (error) {
-				this.logger.error('Error starting Lark app in trigger mode: ' + error);
-				throw error;
-			}
-		}
-
 		const closeFunction = async () => {
-			try {
-				await wsClient.stop(); // Close the WebSocket connection
-				this.logger.info('Lark app has been stopped');
-			} catch (error) {
-				this.logger.error('Error stopping Lark app: ' + error);
-			}
+			await wsClient.stop(); // Close the WebSocket connection
 		};
 
-		return {
-			closeFunction,
-			manualTriggerFunction,
+		const startWsClient = async () => {
+			const eventDispatcher = new EventDispatcher({ logger: this.logger }).register({
+				'im.message.receive_v1': async (data) => {
+					console.log(`Received im.message.receive_v1 event: ${JSON.stringify(data)}`);
+
+					let responsePromise = undefined;
+					if ((nodeVersion as number) > 1) {
+						responsePromise = this.helpers.createDeferredPromise<IRun>();
+						this.emit([this.helpers.returnJsonArray([data])], undefined, responsePromise);
+					} else {
+						this.emit([this.helpers.returnJsonArray([data])]);
+					}
+
+					if (responsePromise) {
+						await responsePromise.promise;
+					}
+				},
+			});
+
+			await wsClient.start({ eventDispatcher });
 		};
+
+		if (this.getMode() !== 'manual') {
+			await startWsClient();
+			return {
+				closeFunction,
+			};
+		} else {
+			const manualTriggerFunction = async () => {
+				await startWsClient();
+			};
+
+			return {
+				closeFunction,
+				manualTriggerFunction,
+			};
+		}
 	}
 }

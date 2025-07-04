@@ -9,16 +9,15 @@ class RequestUtils {
 	) {
 		const credentials = await this.getCredentials('larkCredentialsApi');
 
-		return this.helpers.requestWithAuthentication
-			.call(this, 'larkCredentialsApi', options, {
-				// @ts-ignore
-				credentialsDecrypted: {
-					data: {
-						...credentials,
-						accessToken: clearAccessToken ? '' : credentials.accessToken,
-					},
+		return this.helpers.requestWithAuthentication.call(this, 'larkCredentialsApi', options, {
+			// @ts-ignore
+			credentialsDecrypted: {
+				data: {
+					...credentials,
+					accessToken: clearAccessToken ? '' : credentials.accessToken,
 				},
-			})
+			},
+		});
 	}
 
 	static async request(this: IExecuteFunctions, options: IRequestOptions) {

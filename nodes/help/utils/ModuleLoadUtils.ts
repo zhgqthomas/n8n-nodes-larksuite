@@ -1,11 +1,11 @@
-import { globSync } from 'glob'
-import path from 'path'
+import { globSync } from 'glob';
+import path from 'path';
 
 class ModuleLoadUtils {
 	static loadModules(dirPath: string, expression: string) {
 		const files = globSync(expression, {
 			cwd: dirPath,
-		})
+		});
 
 		const modules = [];
 		for (const file of files) {
@@ -14,7 +14,7 @@ class ModuleLoadUtils {
 			const module = require(filepath);
 			modules.push({
 				order: 100,
-				...module.default
+				...module.default,
 			});
 		}
 

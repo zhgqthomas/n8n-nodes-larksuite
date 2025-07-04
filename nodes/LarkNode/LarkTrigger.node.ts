@@ -85,7 +85,7 @@ export class LarkTrigger implements INodeType {
 		const appId = credentials['appid'] as string;
 		const appSecret = credentials['appsecret'] as string;
 		const baseUrl = credentials['baseUrl'] as string;
-		const nodeVersion = this.getNode().typeVersion;
+		// const nodeVersion = this.getNode().typeVersion;
 
 		const wsClient: WSClient = new WSClient({
 			appId,
@@ -100,18 +100,17 @@ export class LarkTrigger implements INodeType {
 		};
 
 		const startWsClient = async () => {
+			const events = this.getNodeParameter('events', []) as string[];
+
 			const eventDispatcher = new EventDispatcher({ logger: this.logger }).register({
 				'im.message.receive_v1': async (data) => {
-					let responsePromise = undefined;
-					if ((nodeVersion as number) > 1) {
-						responsePromise = this.helpers.createDeferredPromise<IRun>();
-						this.emit([this.helpers.returnJsonArray([data])], undefined, responsePromise);
-					} else {
-						this.emit([this.helpers.returnJsonArray([data])]);
-					}
+					let donePromise = undefined;
 
-					if (responsePromise) {
-						await responsePromise.promise;
+					donePromise = this.helpers.createDeferredPromise<IRun>();
+					this.emit([this.helpers.returnJsonArray([data])], undefined, donePromise);
+
+					if (donePromise) {
+						await donePromise.promise;
 					}
 				},
 			});

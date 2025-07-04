@@ -68,7 +68,7 @@ export class EventDispatcher {
 
 	async invoke(data: any) {
 		const targetData = this.requestHandle?.parse(data);
-		this.logger.debug(`invoke event dispatcher with data: ${JSON.stringify(targetData)}`);
+		this.logger.debug(`Event data: ${JSON.stringify(targetData)}`);
 
 		const type = targetData['event_type'];
 		if (this.handles.has(type)) {

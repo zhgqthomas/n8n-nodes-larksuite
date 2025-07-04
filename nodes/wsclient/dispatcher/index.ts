@@ -17,8 +17,11 @@ export class EventDispatcher {
 
 	logger: Logger;
 
-	constructor(params: { logger: Logger }) {
+	isAnyEvent: boolean;
+
+	constructor(params: { logger: Logger; isAnyEvent: boolean }) {
 		this.logger = params.logger;
+		this.isAnyEvent = params.isAnyEvent;
 
 		this.requestHandle = new RequestHandle({
 			logger: this.logger,
@@ -69,6 +72,12 @@ export class EventDispatcher {
 	async invoke(data: any) {
 		const targetData = this.requestHandle?.parse(data);
 		this.logger.debug(`Event data: ${JSON.stringify(targetData)}`);
+
+		if (this.isAnyEvent) {
+			const ret = await this.handles.get('any_event')!(targetData);
+			this.logger.debug(`execute any_event handle`);
+			return ret;
+		}
 
 		const type = targetData['event_type'];
 		if (this.handles.has(type)) {

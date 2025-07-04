@@ -42,6 +42,7 @@ export class LarkTrigger implements INodeType {
 				displayName: 'Trigger On',
 				name: 'events',
 				type: 'multiOptions',
+				required: true,
 				options: [
 					{
 						name: 'Any Event',
@@ -101,9 +102,12 @@ export class LarkTrigger implements INodeType {
 
 		const startWsClient = async () => {
 			const events = this.getNodeParameter('events', []) as string[];
+			const isAnyEvent = events.includes('any_event');
+			const handlers: Record<string, (data: any) => Promise<void>> = {};
 
-			const eventDispatcher = new EventDispatcher({ logger: this.logger }).register({
-				'im.message.receive_v1': async (data) => {
+			for (const event of events) {
+				handlers[event] = async (data) => {
+					this.logger.info(`Handling event: ${event}`);
 					let donePromise = undefined;
 
 					donePromise = this.helpers.createDeferredPromise<IRun>();
@@ -112,8 +116,12 @@ export class LarkTrigger implements INodeType {
 					if (donePromise) {
 						await donePromise.promise;
 					}
-				},
-			});
+				};
+			}
+
+			const eventDispatcher = new EventDispatcher({ logger: this.logger, isAnyEvent }).register(
+				handlers,
+			);
 
 			await wsClient.start({ eventDispatcher });
 		};

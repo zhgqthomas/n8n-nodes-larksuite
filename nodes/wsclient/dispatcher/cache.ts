@@ -1,4 +1,4 @@
-import { Cache } from '../types';
+import { Cache } from '../interfaces';
 
 export class DefaultCache implements Cache {
 	values: Map<

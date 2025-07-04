@@ -1,7 +1,7 @@
 import { Logger } from 'n8n-workflow';
 
 import { internalCache } from './cache';
-import { Cache } from '../types';
+import { Cache } from '../interfaces';
 import { IHandles } from './events-template';
 import RequestHandle from './request-handle';
 

@@ -39,62 +39,39 @@ export class LarkTrigger implements INodeType {
 				default: '',
 			},
 			{
-				displayName: 'Event Filter',
-				name: 'eventFilter',
-				type: 'options',
-				options: [
-					{
-						name: 'All Events',
-						value: 'all_events',
-					},
-					{
-						name: 'Specific Events',
-						value: 'specific_events',
-					},
-				],
-				default: 'all_events',
-				description:
-					'Check the documentation for available events(https://open.larksuite.com/document/server-docs/event-subscription/event-list)',
-			},
-			{
-				displayName: 'Specific Events',
+				displayName: 'Trigger On',
 				name: 'events',
 				type: 'multiOptions',
 				options: [
 					{
-						name: 'Plan Created',
-						value: 'planCreated',
+						name: 'Any Event',
+						value: 'any_event',
+						description: 'Triggers on any event',
 					},
 					{
-						name: 'Plan Deleted',
-						value: 'planDeleted',
+						name: 'Receive message',
+						value: 'im.message.receive_v1',
+						description: 'This event is triggered when the bot receives a message sent by a user.',
+					},
+					{
+						name: 'Base app record changed',
+						value: 'drive.file.bitable_record_changed_v1',
+						description:
+							'This event is triggered when a subscribed multi-dimensional table record changes.',
+					},
+					{
+						name: 'Base app field changed',
+						value: 'drive.file.bitable_field_changed_v1',
+						description: 'This event is triggered when a subscribed Base app field changes.',
+					},
+					{
+						name: 'Card postback interaction',
+						value: 'card.action.trigger',
+						description:
+							'This callback is triggered when the user clicks on the component configured with postback interaction on the card.',
 					},
 				],
 				default: [],
-				description: 'The events to be monitored',
-				displayOptions: {
-					show: {
-						eventFilter: ['specific_events'],
-					},
-				},
-			},
-			{
-				displayName: 'Callback Filter',
-				name: 'callbackFilter',
-				type: 'options',
-				options: [
-					{
-						name: 'All Callbacks',
-						value: 'all_callbacks',
-					},
-					{
-						name: 'Specific Callbacks',
-						value: 'specific_callbacks',
-					},
-				],
-				default: 'all_callbacks',
-				description:
-					'Check the documentation for available callbacks(https://open.feishu.cn/document/event-subscription-guide/callback-subscription/callback-overview#c8a9d6ae)',
 			},
 		],
 	};

@@ -45,28 +45,38 @@ export class LarkTrigger implements INodeType {
 				required: true,
 				options: [
 					{
-						name: 'Any Event',
+						name: 'Any Event | 任何事务',
 						value: 'any_event',
 						description: 'Triggers on any event',
 					},
 					{
-						name: 'Receive message',
+						name: 'Receive message | 接收消息',
 						value: 'im.message.receive_v1',
 						description: 'This event is triggered when the bot receives a message sent by a user.',
 					},
 					{
-						name: 'Base app record changed',
+						name: 'Add reaction for message | 新增消息表情回复',
+						value: 'im.message.reaction.created_v1',
+						description: 'This event will be triggered when a reaction is added to a message. ',
+					},
+					{
+						name: 'Delete reaction for message | 删除消息表情回复',
+						value: 'im.message.reaction.deleted_v1',
+						description: 'This event will be triggered when the message reaction is deleted. ',
+					},
+					{
+						name: 'Base app record changed | 多维表格记录变更',
 						value: 'drive.file.bitable_record_changed_v1',
 						description:
 							'This event is triggered when a subscribed multi-dimensional table record changes.',
 					},
 					{
-						name: 'Base app field changed',
+						name: 'Base app field changed | 多维表格字段变更',
 						value: 'drive.file.bitable_field_changed_v1',
 						description: 'This event is triggered when a subscribed Base app field changes.',
 					},
 					{
-						name: 'Card postback interaction',
+						name: 'Card postback interaction | 卡片回传交互',
 						value: 'card.action.trigger',
 						description:
 							'This callback is triggered when the user clicks on the component configured with postback interaction on the card.',
@@ -107,7 +117,6 @@ export class LarkTrigger implements INodeType {
 
 			for (const event of events) {
 				handlers[event] = async (data) => {
-					this.logger.info(`Handling event: ${event}`);
 					let donePromise = undefined;
 
 					donePromise = this.helpers.createDeferredPromise<IRun>();
@@ -116,6 +125,8 @@ export class LarkTrigger implements INodeType {
 					if (donePromise) {
 						await donePromise.promise;
 					}
+
+					this.logger.info(`Handled event: ${event}`);
 				};
 			}
 

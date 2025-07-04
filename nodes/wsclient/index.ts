@@ -18,17 +18,6 @@ interface IConstructorParams {
 	agent?: any;
 }
 
-const formatDomain = (domain: Domain | string): string => {
-	switch (domain) {
-		case Domain.Feishu:
-			return 'https://open.feishu.cn';
-		case Domain.Lark:
-			return 'https://open.larksuite.com';
-		default:
-			return domain;
-	}
-};
-
 export class WSClient {
 	private wsConfig = new WSConfig();
 
@@ -54,15 +43,7 @@ export class WSClient {
 	private agent?: any;
 
 	constructor(params: IConstructorParams) {
-		const {
-			appId,
-			appSecret,
-			logger,
-			helpers,
-			agent,
-			domain = Domain.Feishu,
-			autoReconnect = true,
-		} = params;
+		const { appId, appSecret, logger, helpers, agent, domain, autoReconnect = true } = params;
 
 		this.logger = logger;
 		this.agent = agent;
@@ -71,7 +52,7 @@ export class WSClient {
 		this.wsConfig.updateClient({
 			appId,
 			appSecret,
-			domain: formatDomain(domain),
+			domain,
 		});
 
 		this.wsConfig.updateWs({
@@ -303,7 +284,7 @@ export class WSClient {
 		});
 
 		wsInstance?.on('close', () => {
-			this.logger.debug('[ws] client closed');
+			this.logger.info('[ws] client closed');
 		});
 	}
 

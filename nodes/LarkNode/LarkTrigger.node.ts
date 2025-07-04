@@ -8,7 +8,6 @@ import {
 	IRun,
 } from 'n8n-workflow';
 import { WSClient } from '../wsclient';
-import { Domain } from '../wsclient/enum';
 import { EventDispatcher } from '../wsclient/dispatcher';
 
 export class LarkTrigger implements INodeType {
@@ -101,7 +100,7 @@ export class LarkTrigger implements INodeType {
 		const wsClient: WSClient = new WSClient({
 			appId,
 			appSecret,
-			domain: baseUrl === 'open.feishu.cn' ? Domain.Feishu : Domain.Lark,
+			domain: `https://${baseUrl}`, // Use the base URL from credentials
 			logger: this.logger,
 			helpers: this.helpers,
 		});

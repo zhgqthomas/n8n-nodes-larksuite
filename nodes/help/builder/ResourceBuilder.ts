@@ -20,7 +20,7 @@ class ResourceBuilder {
 	}
 
 	build(): INodeProperties[] {
-		// 构建 Operations
+		// Build Operations
 		let list: INodeProperties[] = [];
 
 		list.push({
@@ -60,7 +60,6 @@ class ResourceBuilder {
 
 			for (const operation of resource.operations) {
 				for (let option of operation.options) {
-					// @ts-ignore
 					list.push({
 						...option,
 						displayOptions: {
@@ -82,12 +81,11 @@ class ResourceBuilder {
 	getCall(resourceName: string, operateName: string): Function | null {
 		const resource = this.resources.find((item) => item.value === resourceName);
 		if (!resource) {
-			// @ts-ignore
 			return null;
 		}
 		const operate = resource.operations.find((item) => item.value === operateName);
-		// @ts-ignore
-		return operate?.call;
+
+		return operate?.call ?? null;
 	}
 }
 

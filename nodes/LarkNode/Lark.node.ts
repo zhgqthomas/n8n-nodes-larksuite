@@ -52,9 +52,6 @@ export class Lark implements INodeType {
 			);
 		}
 
-		// Iterates over all input items and add the key "myString" with the
-		// value the parameter "myString" resolves to.
-		// (This could be a different value for each item in case it contains an expression)
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 			try {
 				this.logger.debug('call function', {
@@ -73,8 +70,6 @@ export class Lark implements INodeType {
 					stack: error.stack,
 				});
 
-				// This node should never fail but we want to showcase how
-				// to handle errors.
 				if (this.continueOnFail()) {
 					let errorJson = {
 						error: error.message,

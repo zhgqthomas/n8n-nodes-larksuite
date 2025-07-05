@@ -40,7 +40,7 @@ const WikiSpacesGetInfoOperate: ResourceOperations = {
 			],
 			default: 'zh',
 			description: '返回的文档库名称展示语言。',
-		}
+		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {
 		const spaceId = this.getNodeParameter('space_id', index) as string;

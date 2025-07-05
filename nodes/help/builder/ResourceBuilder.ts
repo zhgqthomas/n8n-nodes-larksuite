@@ -12,10 +12,10 @@ class ResourceBuilder {
 		});
 	}
 
-	addOperate(resourceName: string, operate: ResourceOperations) {
+	addOperation(resourceName: string, operation: ResourceOperations) {
 		const resource = this.resources.find((resource) => resource.value === resourceName);
 		if (resource) {
-			resource.operations.push(operate);
+			resource.operations.push(operation);
 		}
 	}
 

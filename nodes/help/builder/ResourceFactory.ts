@@ -14,19 +14,19 @@ class ResourceFactory {
 		});
 		resources.forEach((resource) => {
 			resourceBuilder.addResource(resource);
-			const operates: ResourceOperations[] = ModuleLoadUtils.loadModules(
+			const operations: ResourceOperations[] = ModuleLoadUtils.loadModules(
 				basedir,
 				`resource/${resource.value}/*.js`,
 			);
 			// 排序
-			operates.sort((a, b) => {
+			operations.sort((a, b) => {
 				if (!a.order) a.order = 0;
 				if (!b.order) b.order = 0;
 				return b.order - a.order;
 			});
-			operates.forEach((operate: ResourceOperations) => {
+			operations.forEach((operation: ResourceOperations) => {
 				// @ts-ignore
-				resourceBuilder.addOperate(resource.value, operate);
+				resourceBuilder.addOperation(resource.value, operation);
 			});
 		});
 		return resourceBuilder;

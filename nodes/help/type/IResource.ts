@@ -1,5 +1,9 @@
-import { INodePropertyOptions } from 'n8n-workflow/dist/Interfaces';
-import { IDataObject, type IExecuteFunctions, INodeProperties } from 'n8n-workflow';
+import {
+	INodePropertyOptions,
+	IDataObject,
+	IExecuteFunctions,
+	INodeProperties,
+} from 'n8n-workflow';
 
 export type ResourceOperations = INodePropertyOptions & {
 	options: INodeProperties[];

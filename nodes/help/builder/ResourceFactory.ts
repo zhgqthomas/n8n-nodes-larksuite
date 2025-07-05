@@ -12,7 +12,7 @@ class ResourceFactory {
 			if (!b.order) b.order = 0;
 			return b.order - a.order;
 		});
-		resources.forEach((resource) => {
+		resources.forEach((resource: ResourceOptions) => {
 			resourceBuilder.addResource(resource);
 			const operations: ResourceOperation[] = ModuleLoadUtils.loadModules(
 				basedir,
@@ -25,8 +25,7 @@ class ResourceFactory {
 				return b.order - a.order;
 			});
 			operations.forEach((operation: ResourceOperation) => {
-				// @ts-ignore
-				resourceBuilder.addOperation(resource.value, operation);
+				resourceBuilder.addOperation(resource.value as string, operation);
 			});
 		});
 		return resourceBuilder;

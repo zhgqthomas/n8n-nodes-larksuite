@@ -1,5 +1,5 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import RequestUtils from '../../../help/utils/RequestUtils';
 
 export default {
@@ -23,4 +23,4 @@ export default {
 			url: `/open-apis/calendar/v4/calendars/${calendarId}`,
 		});
 	},
-} as ResourceOperations;
+} as ResourceOperation;

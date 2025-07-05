@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
 export default {
 	name: '删除字段',
@@ -42,4 +42,4 @@ export default {
 			url: `/open-apis/bitable/v1/apps/${app_token}/tables/${table_id}/fields/${field_id}`,
 		});
 	},
-} as ResourceOperations;
+} as ResourceOperation;

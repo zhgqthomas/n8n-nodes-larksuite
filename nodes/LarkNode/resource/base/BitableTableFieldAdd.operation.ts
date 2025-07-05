@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import NodeUtils from "../../../help/utils/NodeUtils";
 
 export default  {
@@ -59,4 +59,4 @@ export default  {
 			body: body
 		});
 	},
-} as ResourceOperations;
+} as ResourceOperation;

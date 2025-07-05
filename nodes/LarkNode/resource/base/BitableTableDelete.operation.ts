@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const BitableTableAddOperate: ResourceOperations = {
+const BitableTableAddOperate: ResourceOperation = {
 	name: '删除数据表',
 	value: 'bitable:table:delete',
 	order: 90,

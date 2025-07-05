@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const WikiSpacesAddMemberOperate: ResourceOperations = {
+const WikiSpacesAddMemberOperate: ResourceOperation = {
 	name: '添加知识空间成员',
 	value: 'wiki:spaces:members:add',
 	order: 95,

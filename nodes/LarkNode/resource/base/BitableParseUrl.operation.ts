@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import RequestUtils from "../../../help/utils/RequestUtils";
 
-const BitableParseUrlOperate: ResourceOperations = {
+const BitableParseUrlOperate: ResourceOperation = {
 	name: '解析多维表格地址',
 	value: 'bitable:parseUrl',
 	order: 100,

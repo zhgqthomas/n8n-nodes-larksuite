@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetCellsMergeOperate: ResourceOperations = {
+const SpreadsheetCellsMergeOperate: ResourceOperation = {
 	name: '合并单元格',
 	value: 'spreadsheet:mergeCells',
 	order: 80,

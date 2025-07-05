@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const BitableInfoUpdateMetadataOperate: ResourceOperations = {
+const BitableInfoUpdateMetadataOperate: ResourceOperation = {
 	name: '更新多维表格元数据',
 	value: 'bitable:updateMetadata',
 	order: 100,

@@ -1,5 +1,5 @@
 import ResourceBuilder from './ResourceBuilder';
-import { ResourceOperations, ResourceOptions } from '../type/IResource';
+import { ResourceOperation, ResourceOptions } from '../type/IResource';
 import ModuleLoadUtils from '../utils/ModuleLoadUtils';
 
 class ResourceFactory {
@@ -14,7 +14,7 @@ class ResourceFactory {
 		});
 		resources.forEach((resource) => {
 			resourceBuilder.addResource(resource);
-			const operations: ResourceOperations[] = ModuleLoadUtils.loadModules(
+			const operations: ResourceOperation[] = ModuleLoadUtils.loadModules(
 				basedir,
 				`resource/${resource.value}/*.js`,
 			);
@@ -24,7 +24,7 @@ class ResourceFactory {
 				if (!b.order) b.order = 0;
 				return b.order - a.order;
 			});
-			operations.forEach((operation: ResourceOperations) => {
+			operations.forEach((operation: ResourceOperation) => {
 				// @ts-ignore
 				resourceBuilder.addOperation(resource.value, operation);
 			});

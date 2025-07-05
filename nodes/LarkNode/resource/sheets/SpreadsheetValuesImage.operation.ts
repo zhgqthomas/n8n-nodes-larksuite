@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetValuesImageOperate: ResourceOperations = {
+const SpreadsheetValuesImageOperate: ResourceOperation = {
 	name: '写入图片',
 	value: 'spreadsheet:valuesImage',
 	order: 70,

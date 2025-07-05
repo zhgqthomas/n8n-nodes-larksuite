@@ -1,9 +1,9 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import NodeUtils from "../../../help/utils/NodeUtils";
 
-const DocBlockUpdateContentOperate: ResourceOperations = {
+const DocBlockUpdateContentOperate: ResourceOperation = {
 	name: '更新块的内容',
 	value: 'doc:block:updateContent',
 	options: [

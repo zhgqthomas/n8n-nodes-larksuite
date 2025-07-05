@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const DocGetInfoOperate: ResourceOperations = {
+const DocGetInfoOperate: ResourceOperation = {
 	name: '获取文档基本信息',
 	value: 'doc:getInfo',
 	options: [

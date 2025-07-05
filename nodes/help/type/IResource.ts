@@ -5,7 +5,7 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export type ResourceOperations = INodePropertyOptions & {
+export type ResourceOperation = INodePropertyOptions & {
 	options: INodeProperties[];
 	call?: (this: IExecuteFunctions, index: number) => Promise<IDataObject>;
 	// 默认100
@@ -18,5 +18,5 @@ export type ResourceOptions = INodePropertyOptions & {
 };
 
 export interface IResource extends INodePropertyOptions {
-	operations: ResourceOperations[];
+	operations: ResourceOperation[];
 }

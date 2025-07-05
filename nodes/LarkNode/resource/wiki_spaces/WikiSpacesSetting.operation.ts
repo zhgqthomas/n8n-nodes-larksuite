@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const WikiSpacesUpdateSettingOperate: ResourceOperations = {
+const WikiSpacesUpdateSettingOperate: ResourceOperation = {
 	name: '更新知识空间设置',
 	value: 'wiki:spaces:settings:update',
 	order: 98,

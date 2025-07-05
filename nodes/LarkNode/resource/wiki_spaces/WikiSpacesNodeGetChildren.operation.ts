@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const WikiSpacesNodeGetChildrenOperate: ResourceOperations = {
+const WikiSpacesNodeGetChildrenOperate: ResourceOperation = {
 	name: '获取知识空间子节点列表',
 	value: 'wiki:spaces:node:children',
 	order: 90,

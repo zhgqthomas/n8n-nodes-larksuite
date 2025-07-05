@@ -1,5 +1,5 @@
 import { INodePropertyOptions } from 'n8n-workflow/dist/Interfaces';
-import { IResource, ResourceOperations } from '../type/IResource';
+import { IResource, ResourceOperation } from '../type/IResource';
 import { INodeProperties } from 'n8n-workflow';
 
 class ResourceBuilder {
@@ -12,7 +12,7 @@ class ResourceBuilder {
 		});
 	}
 
-	addOperation(resourceName: string, operation: ResourceOperations) {
+	addOperation(resourceName: string, operation: ResourceOperation) {
 		const resource = this.resources.find((resource) => resource.value === resourceName);
 		if (resource) {
 			resource.operations.push(operation);

@@ -1,6 +1,6 @@
 /* eslint-disable n8n-nodes-base/node-param-type-options-password-missing */
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import RequestUtils from '../../../help/utils/RequestUtils';
 
 export default {
@@ -112,4 +112,4 @@ export default {
 			qs,
 		});
 	},
-} as ResourceOperations;
+} as ResourceOperation;

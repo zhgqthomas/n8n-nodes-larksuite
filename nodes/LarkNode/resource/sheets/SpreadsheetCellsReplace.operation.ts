@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetCellsReplaceOperate: ResourceOperations = {
+const SpreadsheetCellsReplaceOperate: ResourceOperation = {
 	name: '替换单元格',
 	value: 'spreadsheet:replaceCells',
 	order: 80,

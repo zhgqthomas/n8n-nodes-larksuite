@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetDimensionMoveOperate: ResourceOperations = {
+const SpreadsheetDimensionMoveOperate: ResourceOperation = {
 	name: '移动行列',
 	value: 'spreadsheet:moveDimension',
 	order: 90,

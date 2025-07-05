@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetValuesReadOperate: ResourceOperations = {
+const SpreadsheetValuesReadOperate: ResourceOperation = {
 	name: '读取单个范围',
 	value: 'spreadsheet:valuesRead',
 	order: 70,

@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetTableGetOperate: ResourceOperations = {
+const SpreadsheetTableGetOperate: ResourceOperation = {
 	name: '获取电子表格信息',
 	value: 'spreadsheet:getInfo',
 	order: 100,

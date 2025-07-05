@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetDimensionAddOperate: ResourceOperations = {
+const SpreadsheetDimensionAddOperate: ResourceOperation = {
 	name: '增加行列',
 	value: 'spreadsheet:addDimension',
 	order: 90,

@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const MessageBatchRecallOperate: ResourceOperations = {
+const MessageBatchRecallOperate: ResourceOperation = {
 	name: '批量撤回消息',
 	value: 'message:batchRecall',
 	options: [

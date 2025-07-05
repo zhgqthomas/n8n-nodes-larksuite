@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const WikiSpacesNodeUpdateTitleOperate: ResourceOperations = {
+const WikiSpacesNodeUpdateTitleOperate: ResourceOperation = {
 	name: '更新知识空间节点标题',
 	value: 'wiki:spaces:node:updateTitle',
 	order: 90,

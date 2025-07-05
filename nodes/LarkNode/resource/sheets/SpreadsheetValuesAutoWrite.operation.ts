@@ -1,9 +1,9 @@
 import {IDataObject, IExecuteFunctions, NodeOperationError} from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import nodeUtils from "../../../help/utils/NodeUtils";
 
-const SpreadsheetValuesWriteOperate: ResourceOperations = {
+const SpreadsheetValuesWriteOperate: ResourceOperation = {
 	name: '自动写入数据',
 	value: 'spreadsheet:valuesAutoWrite',
 	order: 70,

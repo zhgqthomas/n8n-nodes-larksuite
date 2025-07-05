@@ -1,9 +1,9 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 import NodeUtils from '../../../help/utils/NodeUtils';
 
-const SpreadsheetValuesAppendOperate: ResourceOperations = {
+const SpreadsheetValuesAppendOperate: ResourceOperation = {
 	name: '追加数据',
 	value: 'spreadsheet:valuesAppend',
 	order: 70,

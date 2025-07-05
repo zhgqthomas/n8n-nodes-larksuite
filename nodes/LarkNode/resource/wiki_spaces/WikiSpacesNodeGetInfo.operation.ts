@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const WikiSpacesNodeGetInfoOperate: ResourceOperations = {
+const WikiSpacesNodeGetInfoOperate: ResourceOperation = {
 	name: '获取知识空间节点信息',
 	value: 'wiki:spaces:node:info',
 	order: 90,

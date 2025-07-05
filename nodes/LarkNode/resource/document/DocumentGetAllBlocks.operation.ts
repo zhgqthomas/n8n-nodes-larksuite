@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const DocGetAllBlocksOperate: ResourceOperations = {
+const DocGetAllBlocksOperate: ResourceOperation = {
 	name: '获取文档所有块',
 	value: 'doc:getAllBlocks',
 	options: [

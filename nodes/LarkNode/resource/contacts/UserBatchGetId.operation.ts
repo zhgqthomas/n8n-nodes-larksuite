@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const UserBatchGetIdOperate: ResourceOperations = {
+const UserBatchGetIdOperate: ResourceOperation = {
 	name: '通过手机号或邮箱获取用户 ID',
 	value: 'user:batchGetId',
 	options: [

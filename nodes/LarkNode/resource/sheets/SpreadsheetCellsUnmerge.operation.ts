@@ -1,8 +1,8 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
-import { ResourceOperations } from '../../../help/type/IResource';
+import { ResourceOperation } from '../../../help/type/IResource';
 
-const SpreadsheetCellsUnmergeOperate: ResourceOperations = {
+const SpreadsheetCellsUnmergeOperate: ResourceOperation = {
 	name: '拆分单元格',
 	value: 'spreadsheet:unmergeCells',
 	order: 80,

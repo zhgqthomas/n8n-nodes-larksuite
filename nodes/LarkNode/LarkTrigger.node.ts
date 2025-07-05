@@ -44,38 +44,38 @@ export class LarkTrigger implements INodeType {
 				required: true,
 				options: [
 					{
-						name: 'Any Event | 任何事务',
+						name: 'Any Event(所有事件)',
 						value: 'any_event',
 						description: 'Triggers on any event',
 					},
 					{
-						name: 'Receive message | 接收消息',
+						name: 'Receive message(接收消息)',
 						value: 'im.message.receive_v1',
 						description: 'This event is triggered when the bot receives a message sent by a user.',
 					},
 					{
-						name: 'Add reaction for message | 新增消息表情回复',
+						name: 'Add reaction for message(新增消息表情回复)',
 						value: 'im.message.reaction.created_v1',
 						description: 'This event will be triggered when a reaction is added to a message. ',
 					},
 					{
-						name: 'Delete reaction for message | 删除消息表情回复',
+						name: 'Delete reaction for message(删除消息表情回复)',
 						value: 'im.message.reaction.deleted_v1',
 						description: 'This event will be triggered when the message reaction is deleted. ',
 					},
 					{
-						name: 'Base app record changed | 多维表格记录变更',
+						name: 'Base app record changed(多维表格记录变更)',
 						value: 'drive.file.bitable_record_changed_v1',
 						description:
 							'This event is triggered when a subscribed multi-dimensional table record changes.',
 					},
 					{
-						name: 'Base app field changed | 多维表格字段变更',
+						name: 'Base app field changed(多维表格字段变更)',
 						value: 'drive.file.bitable_field_changed_v1',
 						description: 'This event is triggered when a subscribed Base app field changes.',
 					},
 					{
-						name: 'Card postback interaction | 卡片回传交互',
+						name: 'Card postback interaction(卡片回传交互)',
 						value: 'card.action.trigger',
 						description:
 							'This callback is triggered when the user clicks on the component configured with postback interaction on the card.',
